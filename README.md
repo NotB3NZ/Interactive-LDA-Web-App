@@ -10,6 +10,7 @@ An interactive, real-time visualization of **Fisher's Linear Discriminant Analys
 - **Real-Time 1D Projection:** Watch the 2D points collapse onto a 1D number line based on the chosen projection axis, revealing how well the classes are separated.
 - **Manual Axis Sweep:** Rotate the projection vector ($w$) manually using a slider or an automated sweep animation to see the effect on class separation.
 - **Live Metrics:** Real-time calculation of:
+
   - Fisher's Ratio $J(w)$
   - Current Threshold
   - Classification Accuracy
@@ -33,7 +34,7 @@ An interactive, real-time visualization of **Fisher's Linear Discriminant Analys
    ```bash
    cd Interactive-LDA-Web-App
    ```
-3. Open `LDA-Web-App.html` in any modern web browser. No build steps or local servers are required!
+3. Open `index.html` in any modern web browser. No build steps or local servers are required!
 
 ## 🧠 Understanding the Math
 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LDA Explorer — Interactive Linear Discriminant Analysis</title>
+  <meta name="description"
+    content="Explore Fisher's Linear Discriminant Analysis interactively. Rotate the discriminant axis, project data points, and classify flowers in real time." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="pachuychuy.css" />
+</head>
+
+<body>
+
+  <header>
+    <h1>INTERACTIVE LDA APP</h1>
+  </header>
+
+  <main class="app">
+
+    <!-- ─── 2D Scatter ─── -->
+    <section class="card" id="scatter-card">
+      <div class="card-title">
+        <span class="dot" style="background:var(--accent)"></span>
+        2D Feature Space
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="scatterCanvas" width="600" height="440"></canvas>
+      </div>
+      <div class="legend">
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--setosa)"></span> Setosa</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--versicolor)"></span>
+          Versicolor</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--test-point)"></span> Your
+          flower</span>
+        <span class="legend-item"><span class="legend-swatch"
+            style="background:var(--threshold);border-radius:2px;width:14px;height:3px"></span> Decision boundary</span>
+      </div>
+    </section>
+
+    <!-- ─── Right Column ─── -->
+    <div class="right-col">
+
+      <!-- ─── Controls ─── -->
+      <section class="card" id="controls-card">
+        <div class="card-title">
+          <span class="dot" style="background:var(--success)"></span>
+          Controls
+        </div>
+
+        <div class="controls-grid">
+          <div class="control-group full-width">
+            <div class="control-label">
+              <span>Axis Angle</span>
+              <span class="control-value" id="angle-val">41.8°</span>
+            </div>
+            <input type="range" id="angle-slider" min="0" max="180" step="0.5" value="41.8" />
+            <div style="display:flex;gap:0.5rem;margin-top:0.4rem">
+              <button class="btn btn-accent" id="btn-reset">⟲ Reset to Optimal</button>
+              <button class="btn" id="btn-animate">▶ Sweep</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label">
+              <span>Petal Length (cm)</span>
+              <span class="control-value" id="pl-val">3.0</span>
+            </div>
+            <input type="range" class="setosa-range" id="pl-slider" min="0.5" max="6.0" step="0.05" value="3.0" />
+          </div>
+
+          <div class="control-group">
+            <div class="control-label">
+              <span>Petal Width (cm)</span>
+              <span class="control-value" id="pw-val">0.8</span>
+            </div>
+            <input type="range" class="versicolor-range" id="pw-slider" min="0.0" max="2.5" step="0.05" value="0.8" />
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="result-panel">
+          <div class="result-box">
+            <div class="label">Projection Score</div>
+            <div class="value" id="score-val" style="color:var(--accent)">—</div>
+          </div>
+          <div class="result-box">
+            <div class="label">Threshold</div>
+            <div class="value" id="thresh-val" style="color:var(--threshold)">—</div>
+          </div>
+          <div class="result-box prediction" id="prediction-box">
+            <div class="label">Prediction</div>
+            <div class="value" id="prediction-val">—</div>
+          </div>
+        </div>
+
+        <!-- Fisher ratio -->
+        <div class="fisher-bar-wrap">
+          <div class="fisher-label">
+            <span>Fisher's Ratio J(w)</span>
+            <span class="control-value" id="fisher-val">—</span>
+          </div>
+          <div class="fisher-bar-bg">
+            <div class="fisher-bar-fill" id="fisher-fill" style="width:0%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── 1D Projection ─── -->
+      <section class="card projection-card" id="projection-card">
+        <div class="card-title">
+          <span class="dot" style="background:var(--threshold)"></span>
+          1D Projection
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="projCanvas" width="600" height="140"></canvas>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--setosa)"></span> Setosa</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--versicolor)"></span>
+            Versicolor</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--test-point)"></span> Your
+            flower</span>
+          <span class="legend-item"><span class="legend-swatch"
+              style="background:var(--threshold);border-radius:2px;width:14px;height:3px"></span> Threshold</span>
+        </div>
+        <div class="stats-row">
+          <span class="stat-chip">w = [<span class="highlight" id="w0-val">—</span>, <span class="highlight"
+              id="w1-val">—</span>]</span>
+          <span class="stat-chip">Accuracy: <span class="highlight" id="acc-val">—</span></span>
+        </div>
+      </section>
+
+    </div><!-- /.right-col -->
+
+  </main>
+
+  <script src="jabaiscrip.js"></script>
+</body>
+
+</html>

@@ -1,4 +1,7 @@
 {
   "buildCommand": "",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/LDA-Web-App.html", "destination": "/index.html" }
+  ]
 }
