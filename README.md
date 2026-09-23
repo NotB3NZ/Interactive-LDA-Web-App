@@ -2,7 +2,7 @@
 
 An interactive, real-time visualization of **Fisher's Linear Discriminant Analysis (LDA)**. This web application allows you to manually explore how projecting 2D data onto a 1D axis affects class separation. By rotating the discriminant axis and adjusting test points, you can build an intuitive understanding of the math behind LDA.
 
-![Interactive LDA App](screenshot.png)
+![Interactive LDA App](LDA-Web-App.png)
 
 ## 🌟 Features
 
@@ -33,7 +33,7 @@ An interactive, real-time visualization of **Fisher's Linear Discriminant Analys
    ```bash
    cd Interactive-LDA-Web-App
    ```
-3. Open `index.html` in any modern web browser. No build steps or local servers are required!
+3. Open `LDA-Web-App.html` in any modern web browser. No build steps or local servers are required!
 
 ## 🧠 Understanding the Math
 
